@@ -1,0 +1,11 @@
+﻿@model int
+
+<h1>Delete Account</h1>
+<br>
+chooce delete method code:
+<br />
+<a asp-controller="Account" asp-action="Delete">delete only Account</a>
+<br />
+<a asp-controller="Account" asp-action="DeleteAccountsCode">delete Account & Code</a>
+<br />
+This Account include @Model.ToString() part of code

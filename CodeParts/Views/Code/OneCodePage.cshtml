@@ -1,0 +1,20 @@
+﻿@model CodeParts.Data.TableModel.CodeDb
+@{
+    ViewData["Title"] = "one Code";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>welcome</p>
+
+<h3>@Model.title</h3>
+<p>@Model.content</p>
+<p>@Model.userLogin</p>
+<p>@Model.tags</p>
+
+<h5>
+    @if (User.Identity.Name == Model.userLogin)
+    {
+        <a asp-controller="Code" asp-action="Delete" asp-route-id="@Model.id" asp-route-login="@Model.userLogin">Delete</a>
+    }
+</h5>
+<br />

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<CodeParts.Data.TableModel.CodeDb>
+@{
+    ViewData["Title"] = "Code";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>welcome</p>
+
+@foreach (var code in Model)
+{
+    <div style="border: solid">
+        <a asp-controller="Code" asp-action="OneCodePage" asp-route-id="@code.id">@code.title</a>
+        <h10><a asp-controller="Account" asp-action="Index" asp-route-login="@code.userLogin">@code.userLogin</a></h10>
+        <p>@code.content</p>
+        <p>@code.tags</p>
+
+    </div>
+    <br />
+}
+<script>
+
+</script>

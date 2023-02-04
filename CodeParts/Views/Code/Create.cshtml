@@ -1,0 +1,23 @@
+﻿@model CodeParts.Data.ViewModel.Code.CodeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post" asp-controller="Code" asp-action="Create">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div>
+        <input id="codeTitleCreateInp" asp-for="title" placeholder="Title" />
+    </div>
+    <textarea asp-for="content" placeholder="Enter your code here!">
+
+    </textarea>
+    <div>
+        <label asp-for="tags">tags:</label>
+        <input asp-for="tags" placeholder="enter all tags separated by a space" />
+    </div>
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+</form>
+

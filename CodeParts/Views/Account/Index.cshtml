@@ -1,0 +1,38 @@
+﻿@using System.Security.Claims;
+@model CodeParts.Data.ViewModel.Account.IndexAccountViewModel
+@{
+    ViewData["Title"] = "Account";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+
+
+<h3>@Model.account.login</h3>
+<h5>@Model.account.role</h5>
+<p>@Model.account.nickname</p>
+<p>@Model.account.email</p>
+<br />
+<br />
+<br />
+@if (User.IsInRole("admin") || User.Identity.Name == Model.account.login)
+{
+    <button class="continue" onclick="OpenModelWindow({url:'/Account/deleteConfirm',data:@Model.code.Length})">delForm</button>
+}
+
+<br />
+@foreach (var code in Model.code)
+{
+    <div style="border: solid">
+        <a asp-controller="Code" asp-action="OneCodePage" asp-route-id="@code.id">@code.title</a>
+        <h10>@code.userLogin</h10>        
+        <p>@code.content</p>
+        <p>@code.tags</p>
+        @if (User.Identity.Name == code.userLogin)
+        {
+            <a asp-controller="Code" asp-action="Delete" asp-route-id="@code.id" asp-route-login="@code.userLogin">Delete</a>
+        }
+    </div>
+    <br />
+}
+<script src="~/js/modelWindow.js"></script>
