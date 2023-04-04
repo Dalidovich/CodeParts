@@ -18,7 +18,7 @@ namespace CodeParts
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(
-                opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("myDb"))
+                opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("NpgConnectionString"))
                 );
 
             builder.Services.AddScoped<ICodeRepository, CodeRepository>();

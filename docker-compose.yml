@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  dev:
+    driver: bridge
+
+services:
+  codeparts:
+    image: ${DOCKER_REGISTRY-}codeparts
+    depends_on: 
+      - app_db_codepart
+    container_name: codeparts
+    build:
+      context: .
+      dockerfile: CodeParts/Dockerfile
+    environment:
+      - ConnectionStrings__NpgConnectionString=User Id=postgres; Password=pg; Server=app_db_codepart; Port=5432; Database=code_part; IntegratedSecurity=true; Pooling=true;
+    networks:
+      - dev
+
+  app_db_codepart: 
+    image: postgres:latest
+    container_name: app_db_codepart
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pg
+      - POSTGRES_DB=code_part
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+volumes:
+  app_data:
