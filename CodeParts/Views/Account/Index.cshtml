@@ -25,12 +25,12 @@
 {
     <div style="border: solid">
         <a asp-controller="Code" asp-action="OneCodePage" asp-route-id="@code.id">@code.title</a>
-        <h10>@code.userLogin</h10>        
+        <h10>@code.accountLogin</h10>        
         <p>@code.content</p>
         <p>@code.tags</p>
-        @if (User.Identity.Name == code.userLogin)
+        @if (User.Identity.Name == code.accountLogin)
         {
-            <a asp-controller="Code" asp-action="Delete" asp-route-id="@code.id" asp-route-login="@code.userLogin">Delete</a>
+            <a asp-controller="Code" asp-action="Delete" asp-route-id="@code.id" asp-route-login="@code.accountLogin">Delete</a>
         }
     </div>
     <br />

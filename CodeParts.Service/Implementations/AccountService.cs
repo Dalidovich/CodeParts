@@ -67,7 +67,7 @@ namespace CodeParts.Service.Implementations
             try
             {
                 var account = await _accountRepository.GetAll().FirstOrDefaultAsync(x => x.login == login);
-                var code = await _codeRepository.GetAll().Where(x => x.userLogin == login).ToArrayAsync();
+                var code = await _codeRepository.GetAll().Where(x => x.accountLogin == login).ToArrayAsync();
                 if (account == null)
                 {
                     return new BaseResponse<bool>()
@@ -98,7 +98,7 @@ namespace CodeParts.Service.Implementations
             try
             {
                 var account = await _accountRepository.GetAll().FirstOrDefaultAsync(x => x.login == login);
-                var code=await _codeRepository.GetAll().Where(x => x.userLogin == login).ToArrayAsync();
+                var code=await _codeRepository.GetAll().Where(x => x.accountLogin == login).ToArrayAsync();
                 if (account == null)
                 {
                     return new BaseResponse<bool>()
@@ -129,7 +129,7 @@ namespace CodeParts.Service.Implementations
             try
             {
                 var account = await _accountRepository.GetAll().FirstOrDefaultAsync(x => x.login == login);
-                var code = await _codeRepository.GetAll().Where(x => x.userLogin == login).ToArrayAsync();
+                var code = await _codeRepository.GetAll().Where(x => x.accountLogin == login).ToArrayAsync();
                 var indexAccount = new IndexAccountViewModel()
                 {
                     account=account,

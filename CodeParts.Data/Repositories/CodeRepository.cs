@@ -37,7 +37,7 @@ namespace CodeParts.Data.Repositories
         }
         public async Task<bool> chengeOwner(string oldOwner, string newOwner)
         {
-            await _db.Content.Where(x=>x.userLogin==oldOwner).ForEachAsync(x=>x.userLogin= newOwner);
+            await _db.Content.Where(x=>x.accountLogin==oldOwner).ForEachAsync(x=>x.accountLogin= newOwner);
             await _db.SaveChangesAsync();
             return true;
         }

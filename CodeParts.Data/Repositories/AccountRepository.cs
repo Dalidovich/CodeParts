@@ -14,21 +14,21 @@ namespace CodeParts.Data.Repositories
 
         public async Task<bool> createAsync(AccountDb entity)
         {
-            await _db.Account.AddAsync(entity);
+            await _db.Accounts.AddAsync(entity);
             await _db.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> deleteAsync(AccountDb entity)
         {
-            _db.Account.Remove(entity);
+            _db.Accounts.Remove(entity);
             await _db.SaveChangesAsync();
             return true;
         }
 
         public IQueryable<AccountDb> GetAll()
         {
-            return  _db.Account;
+            return  _db.Accounts;
         }
     }
 }

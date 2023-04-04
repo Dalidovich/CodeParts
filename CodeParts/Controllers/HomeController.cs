@@ -1,4 +1,5 @@
-﻿using CodeParts.Models;
+﻿using CodeParts.Data;
+using CodeParts.Models;
 using CodeParts.Service.Implementations;
 using CodeParts.Service.Interfaces;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -16,6 +17,11 @@ namespace CodeParts.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            return RedirectToAction("AllCodePage", "Code");
+        }
+        public async Task<IActionResult> ReloadDB()
+        {
+            HttpContext.RequestServices.GetService<AppDbContext>().UpdateDatabase();
             return RedirectToAction("AllCodePage", "Code");
         }
 

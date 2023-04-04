@@ -27,7 +27,7 @@ namespace CodeParts.Service.Implementations
                 var code = new CodeDb()
                 {
                     id = null,
-                    userLogin= viewModel.userLogin,
+                    accountLogin= viewModel.userLogin,
                     content= viewModel.content,
                     tags= viewModel.tags,
                     title= viewModel.title

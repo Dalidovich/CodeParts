@@ -11,18 +11,15 @@ namespace CodeParts.Data.TableModel
 {
     public class AccountDb
     {
-        [Key]
-        [NotNull]
         public string login { get; set; }
 
-        [NotNull]
         public string password { get; set; }
 
-        [MaybeNull]
-        public string nickname { get; set; }
+        public string? nickname { get; set; }
 
-        [MaybeNull]
-        public string email { get; set; }
-        public Role role { get; set; }
+        public string? email { get; set; }
+        public Role? role { get; set; }
+
+        public List<CodeDb> Posts { get; set; } = new List<CodeDb>();
     }
 }

@@ -3,20 +3,46 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CodeParts.Data
 {
-    public class AppDbContext : DbContext
+    public partial class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public DbSet<AccountDb> Accounts { get; set; }
+        public DbSet<CodeDb> Content { get; set; }
+        public void UpdateDatabase()
+        {
+            Database.EnsureDeleted();
+            Database.Migrate();
+        }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
+        public AppDbContext()
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseNpgsql(optionsBuilder.Options.ToString());
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseSerialColumns();
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            OnModelCreatingPartial(modelBuilder);
         }
-        public DbSet<AccountDb> Account { get; set; }
-        public DbSet<CodeDb> Content { get; set; }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

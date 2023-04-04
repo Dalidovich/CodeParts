@@ -8,13 +8,13 @@
 
 <h3>@Model.title</h3>
 <p>@Model.content</p>
-<p>@Model.userLogin</p>
+<p>@Model.accountLogin</p>
 <p>@Model.tags</p>
 
 <h5>
-    @if (User.Identity.Name == Model.userLogin)
+    @if (User.Identity.Name == Model.accountLogin)
     {
-        <a asp-controller="Code" asp-action="Delete" asp-route-id="@Model.id" asp-route-login="@Model.userLogin">Delete</a>
+        <a asp-controller="Code" asp-action="Delete" asp-route-id="@Model.id" asp-route-login="@Model.accountLogin">Delete</a>
     }
 </h5>
 <br />
